@@ -39,21 +39,7 @@ plugins:
               target: "_blank"
 ```
 
-## Theme Integration
-
-The plugin works with the Material for MkDocs theme. You need to override the header partial to include the dropdown menu.
-
-### Option 1: Use the Provided Header Template
-
-Copy the `header.html` and `header-dropdown.html` files from the plugin's `templates/` directory to your `overrides/partials/` directory.
-
-### Option 2: Add to Existing Header
-
-If you already have a custom header, add this line where you want the dropdown to appear:
-
-```jinja
-{% include "partials/header-dropdown.html" %}
-```
+That's it! The plugin automatically injects the dropdown HTML into your Material theme header. No template overrides required.
 
 ## Configuration Options
 
