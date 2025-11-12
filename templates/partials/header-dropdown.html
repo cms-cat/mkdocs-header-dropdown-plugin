@@ -1,7 +1,6 @@
 <!--
-  Header Dropdown - Rendered inline and injected via JavaScript
+  Header Dropdown - Rendered directly in header
 -->
-<div id="header-dropdown-template" style="display: none;">
 {% if config.extra.header_dropdowns %}
   {% for dropdown in config.extra.header_dropdowns %}
     <div class="md-header__option" style="margin-right: 0.1rem;">
@@ -33,21 +32,8 @@
     </div>
   {% endfor %}
 {% endif %}
-</div>
 
 <script>
-  // Inject dropdown into header after page load
-  document.addEventListener('DOMContentLoaded', function() {
-    const template = document.getElementById('header-dropdown-template');
-    const search = document.querySelector('.md-search');
-
-    if (template && search && !document.querySelector('.md-header__dropdown')) {
-      // Clone the template content and insert after search
-      const content = template.innerHTML;
-      search.insertAdjacentHTML('afterend', content);
-    }
-  });
-
   // Dropdown interaction functions
   if (typeof toggleHeaderDropdown === 'undefined') {
     function toggleHeaderDropdown(event) {
@@ -56,10 +42,12 @@
       const content = dropdown.querySelector('.md-header__dropdown-content');
       const isVisible = content.style.display === 'block';
 
+      // Close all other dropdowns
       document.querySelectorAll('.md-header__dropdown-content').forEach(el => {
         el.style.display = 'none';
       });
 
+      // Toggle current dropdown
       content.style.display = isVisible ? 'none' : 'block';
     }
 
@@ -77,6 +65,7 @@
       }, 100);
     }
 
+    // Close dropdown when clicking outside
     document.addEventListener('click', function() {
       document.querySelectorAll('.md-header__dropdown-content').forEach(el => {
         el.style.display = 'none';
