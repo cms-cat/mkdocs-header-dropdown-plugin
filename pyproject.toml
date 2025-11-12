@@ -36,3 +36,9 @@ Repository = "https://github.com/cms-cat/mkdocs-header-dropdown"
 
 [project.entry-points."mkdocs.plugins"]
 header-dropdown = "mkdocs_header_dropdown.plugin:HeaderDropdownPlugin"
+
+[tool.setuptools]
+packages = ["mkdocs_header_dropdown"]
+
+[tool.setuptools.package-data]
+mkdocs_header_dropdown = ["../templates/**/*"]
