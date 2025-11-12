@@ -35,6 +35,11 @@ jobs:
       - name: Install dependencies
         run: pip install -r example/requirements.txt
 
+      - name: Copy assets from submodule
+        run: |
+          mkdir -p example/docs/assets
+          cp example/cms-docs-common/CMSlogo_white_nolabel_1024_May2014.png example/docs/assets/
+
       - name: Build documentation
         run: |
           cd example
