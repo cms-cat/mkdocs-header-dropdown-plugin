@@ -37,7 +37,6 @@ class HeaderDropdownPlugin(BasePlugin):
         """
         Add dropdown configuration to the MkDocs config's extra section.
         This makes it available in templates via config.extra.header_dropdowns
-        Also adds plugin's template directory to the theme's search path.
         """
         if not config.extra:
             config.extra = {}
@@ -45,17 +44,21 @@ class HeaderDropdownPlugin(BasePlugin):
         # Add the dropdowns to extra so templates can access them
         config.extra['header_dropdowns'] = self.config.get('dropdowns', [])
 
-        # Add plugin's template directory to theme's template search path
+        return config
+
+    def on_env(self, env, config, files):
+        """
+        Add plugin's template directory to the Jinja2 environment's search path.
+        This runs after the theme environment is set up.
+        """
         plugin_dir = os.path.dirname(os.path.abspath(__file__))
         templates_dir = os.path.join(os.path.dirname(plugin_dir), 'templates')
 
         if os.path.exists(templates_dir):
-            if not hasattr(config.theme, 'dirs'):
-                config.theme.dirs = []
-            # Insert at the beginning so it has priority
-            config.theme.dirs.insert(0, templates_dir)
+            # Add to the beginning of the loader search path
+            env.loader.searchpath.insert(0, templates_dir)
 
-        return config
+        return env
 
     def on_page_context(self, context, page, config, nav):
         """
