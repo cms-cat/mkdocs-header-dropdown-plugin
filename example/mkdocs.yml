@@ -35,10 +35,14 @@ plugins:
       dropdowns:
         - title: "Examples"
           links:
-            - text: "Example 1: Basic Dropdown"
+            - text: "Overview"
               url: "/"
-            - text: "Example 2: Multiple Links"
+            - text: "Getting Started"
               url: "/getting-started/"
+            - text: "Configuration Examples"
+              url: "/examples/"
+            - text: "Nested Menus"
+              url: "/nested-menus/"
         - title: "Resources"
           links:
             - text: "GitHub Repository"
@@ -73,3 +77,5 @@ markdown_extensions:
 nav:
   - Home: index.md
   - Getting Started: getting-started.md
+  - Configuration Examples: examples.md
+  - Nested Menus: nested-menus.md
