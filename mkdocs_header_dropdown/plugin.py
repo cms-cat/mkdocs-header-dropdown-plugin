@@ -4,12 +4,10 @@ MkDocs Header Dropdown Plugin
 A plugin to add configurable dropdown menus to the MkDocs Material theme header.
 """
 import os
-import shutil
 import yaml
 from mkdocs.config import config_options
 from mkdocs.plugins import BasePlugin
 from mkdocs.config.defaults import MkDocsConfig
-from . import presets
 
 
 class HeaderDropdownPlugin(BasePlugin):
@@ -33,7 +31,6 @@ class HeaderDropdownPlugin(BasePlugin):
     """
 
     config_scheme = (
-        ('preset', config_options.Type(str, default=None)),
         ('config_file', config_options.Type(str, default=None)),
         ('dropdowns', config_options.Type(list, default=[])),
     )
@@ -49,16 +46,7 @@ class HeaderDropdownPlugin(BasePlugin):
         # Collect dropdowns from various sources
         dropdowns = []
 
-        # 1. Load from preset if specified
-        preset_name = self.config.get('preset')
-        if preset_name:
-            try:
-                preset_dropdown = presets.get_preset(preset_name)
-                dropdowns.append(preset_dropdown)
-            except ValueError as e:
-                raise ValueError(f"Error loading preset: {e}")
-
-        # 2. Load from config file if specified
+        # 1. Load from config file if specified
         config_file = self.config.get('config_file')
         if config_file:
             config_file_path = os.path.join(config.docs_dir, '..', config_file)
@@ -70,14 +58,8 @@ class HeaderDropdownPlugin(BasePlugin):
             else:
                 raise FileNotFoundError(f"Config file not found: {config_file_path}")
 
-        # 3. Add dropdowns from mkdocs.yml
+        # 2. Add dropdowns from mkdocs.yml
         dropdowns.extend(self.config.get('dropdowns', []))
-
-        # Process icon paths - replace __plugin__ prefix with actual path
-        for dropdown in dropdowns:
-            if 'icon' in dropdown and dropdown['icon'].startswith('__plugin__/'):
-                # Will be served at /header-dropdown-assets/...
-                dropdown['icon'] = dropdown['icon'].replace('__plugin__/', '/header-dropdown-assets/')
 
         # Add the dropdowns to extra so templates can access them
         config.extra['header_dropdowns'] = dropdowns
@@ -104,23 +86,3 @@ class HeaderDropdownPlugin(BasePlugin):
         """
         context['header_dropdowns'] = config.extra.get('header_dropdowns', [])
         return context
-
-    def on_post_build(self, config):
-        """
-        Copy plugin assets to the site directory after build.
-        """
-        plugin_dir = os.path.dirname(os.path.abspath(__file__))
-        assets_src = os.path.join(plugin_dir, 'assets')
-        assets_dest = os.path.join(config.site_dir, 'header-dropdown-assets')
-
-        if os.path.exists(assets_src):
-            # Create destination directory if it doesn't exist
-            os.makedirs(assets_dest, exist_ok=True)
-
-            # Copy all files from assets directory
-            for item in os.listdir(assets_src):
-                src_path = os.path.join(assets_src, item)
-                dest_path = os.path.join(assets_dest, item)
-
-                if os.path.isfile(src_path):
-                    shutil.copy2(src_path, dest_path)
