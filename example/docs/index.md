@@ -20,9 +20,14 @@ Look at the header above - you'll see **three dropdown menus** demonstrating the
 
 1. **CMS POG Docs** - Loaded from a shared configuration file via git submodule (`cms-docs-common`)
 2. **Examples** - Defined directly in `mkdocs.yml`
-3. **Resources** - Also defined directly in `mkdocs.yml`
+3. **Resources** - Also defined directly in `mkdocs.yml`, with a **nested submenu** under "Documentation"!
 
-This demonstrates both configuration methods working together!
+Try hovering over "Resources" → "Documentation" to see the nested dropdown in action!
+
+This demonstrates:
+- Configuration via shared git submodule
+- Direct configuration in mkdocs.yml
+- **Nested dropdowns** with submenu support
 
 ## Installation
 

@@ -65,8 +65,9 @@ Each dropdown in the `dropdowns` list supports:
 Each link in the `links` list supports:
 
 - `text` (string, required): The text displayed for the link
-- `url` (string, required): The URL the link points to
+- `url` (string, optional): The URL the link points to (not needed if using `submenu`)
 - `target` (string, optional): The target attribute (e.g., `_blank` for new tab)
+- `submenu` (list, optional): List of nested links for a submenu (see Nested Dropdowns below)
 
 ## Example: Using Shared Config File
 
@@ -121,10 +122,41 @@ plugins:
               target: "_blank"
 ```
 
+## Example: Nested Dropdowns
+
+Create submenus by using `submenu` instead of `url`:
+
+```yaml
+plugins:
+  - header-dropdown:
+      dropdowns:
+        - title: "Resources"
+          links:
+            - text: "GitHub"
+              url: "https://github.com/example"
+            - text: "Documentation"  # This will show an arrow
+              submenu:
+                - text: "User Guide"
+                  url: "/guide/"
+                  target: "_blank"
+                - text: "API Reference"
+                  url: "/api/"
+                - text: "Tutorials"
+                  url: "/tutorials/"
+```
+
+Nested dropdowns:
+- Show an arrow indicator (▶) automatically
+- Appear to the right on hover
+- Support multiple levels of nesting
+- Work with keyboard navigation
+```
+
 ## Features
 
 - **Shared configuration**: Load dropdown config from external YAML files via git submodules
 - **Flexible configuration**: Mix shared configs with repository-specific dropdowns
+- **Nested dropdowns**: Create multi-level submenus with arrow indicators
 - **Multiple dropdown menus**: Support for any number of dropdowns
 - **Configurable icons and titles**: Customize appearance
 - **Hover and click interactions**: User-friendly interactions

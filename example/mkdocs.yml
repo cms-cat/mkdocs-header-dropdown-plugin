@@ -47,9 +47,17 @@ plugins:
             - text: "Report Issue"
               url: "https://github.com/cms-cat/mkdocs-header-dropdown-plugin/issues"
               target: "_blank"
-            - text: "Material Theme Docs"
-              url: "https://squidfunk.github.io/mkdocs-material/"
-              target: "_blank"
+            - text: "Documentation"
+              submenu:
+                - text: "Material Theme Docs"
+                  url: "https://squidfunk.github.io/mkdocs-material/"
+                  target: "_blank"
+                - text: "MkDocs Docs"
+                  url: "https://www.mkdocs.org/"
+                  target: "_blank"
+                - text: "Python Markdown"
+                  url: "https://python-markdown.github.io/"
+                  target: "_blank"
 
 markdown_extensions:
   - admonition

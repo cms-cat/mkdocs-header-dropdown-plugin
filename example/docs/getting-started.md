@@ -90,3 +90,33 @@ plugins:
 ```
 
 Both will appear in the header - check this example site to see it in action!
+
+## Nested Dropdowns
+
+You can create nested dropdowns (submenus) by using the `submenu` key instead of `url`:
+
+```yaml
+plugins:
+  - header-dropdown:
+      dropdowns:
+        - title: "Resources"
+          links:
+            - text: "GitHub"
+              url: "https://github.com/example"
+            - text: "Documentation"  # This will have an arrow
+              submenu:
+                - text: "User Guide"
+                  url: "/guide/"
+                - text: "API Reference"
+                  url: "/api/"
+                - text: "FAQ"
+                  url: "/faq/"
+```
+
+**Live Example**: Hover over the "Resources" dropdown and then hover over "Documentation" to see a nested submenu appear to the right!
+
+Features:
+- Arrow indicator (▶) shows which items have submenus
+- Submenus appear on hover to the right
+- Works with both mouse and keyboard navigation
+- Multiple levels of nesting supported
