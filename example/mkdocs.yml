@@ -1,0 +1,74 @@
+site_name: Header Dropdown Plugin
+site_description: Example site demonstrating mkdocs-header-dropdown-plugin
+site_url: https://cms-cat.github.io/mkdocs-header-dropdown-plugin/
+repo_name: cms-cat/mkdocs-header-dropdown-plugin
+repo_url: https://github.com/cms-cat/mkdocs-header-dropdown-plugin
+
+theme:
+  name: material
+  palette:
+    - scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/weather-night
+        name: Switch to dark mode
+    - scheme: slate
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to light mode
+  features:
+    - navigation.instant
+    - navigation.tracking
+    - navigation.top
+    - search.highlight
+    - search.share
+    - search.suggest
+    - content.code.copy
+
+plugins:
+  - search
+  - header-dropdown:
+      dropdowns:
+        - title: "Examples"
+          links:
+            - text: "Example 1: Basic Dropdown"
+              url: "/"
+            - text: "Example 2: Multiple Links"
+              url: "/getting-started/"
+        - title: "Resources"
+          links:
+            - text: "GitHub Repository"
+              url: "https://github.com/cms-cat/mkdocs-header-dropdown-plugin"
+              target: "_blank"
+            - text: "Report Issue"
+              url: "https://github.com/cms-cat/mkdocs-header-dropdown-plugin/issues"
+              target: "_blank"
+            - text: "Material Theme Docs"
+              url: "https://squidfunk.github.io/mkdocs-material/"
+              target: "_blank"
+        - title: "Related Projects"
+          links:
+            - text: "MkDocs"
+              url: "https://www.mkdocs.org/"
+              target: "_blank"
+            - text: "Material for MkDocs"
+              url: "https://squidfunk.github.io/mkdocs-material/"
+              target: "_blank"
+
+markdown_extensions:
+  - admonition
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences
+  - pymdownx.details
+  - attr_list
+  - md_in_html
+
+nav:
+  - Home: index.md
+  - Getting Started: getting-started.md
