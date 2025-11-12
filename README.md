@@ -16,23 +16,47 @@ pip install -e /path/to/mkdocs_header_dropdown
 pip install git+https://github.com/cms-cat/mkdocs-header-dropdown.git
 ```
 
-## Configuration
+## Quick Start
 
-Add the plugin to your `mkdocs.yml` configuration file:
+### Option 1: Using a Shared Config (Recommended for Organizations)
+
+If you're part of an organization with shared documentation links:
+
+```bash
+# Add the shared config as a git submodule
+git submodule add https://github.com/your-org/docs-common.git
+```
 
 ```yaml
+# mkdocs.yml
+plugins:
+  - search
+  - header-dropdown:
+      config_file: "docs-common/header-dropdown.yml"
+```
+
+### Option 2: Direct Configuration
+
+For standalone projects:
+
+```yaml
+# mkdocs.yml
 plugins:
   - search
   - header-dropdown:
       dropdowns:
-        - title: "CMS POG Docs"
-          icon: "/assets/CMSlogo_white_nolabel_1024_May2014.png"
+        - title: "Documentation"
           links:
-            - text: "Analysis Corrections | CrossPOG"
-              url: "https://cms-analysis-corrections.docs.cern.ch/"
-              target: "_blank"
-            - text: "BTV Docs"
-              url: "https://btv-wiki.docs.cern.ch/"
+            - text: "Getting Started"
+              url: "/getting-started/"
+            - text: "User Guide"
+              url: "/guide/"
+            - text: "API Reference"
+              url: "/api/"
+        - title: "External Links"
+          links:
+            - text: "GitHub Repository"
+              url: "https://github.com/your-org/your-project"
               target: "_blank"
 ```
 

@@ -37,16 +37,32 @@ pip install git+https://github.com/cms-cat/mkdocs-header-dropdown-plugin.git
 
 ## Quick Start
 
-Add to your `mkdocs.yml`:
+**For organizations with shared links (using git submodules):**
+
+```bash
+git submodule add https://github.com/your-org/docs-common.git
+```
 
 ```yaml
+# mkdocs.yml
+plugins:
+  - header-dropdown:
+      config_file: "docs-common/header-dropdown.yml"
+```
+
+**For standalone projects:**
+
+```yaml
+# mkdocs.yml
 plugins:
   - header-dropdown:
       dropdowns:
         - title: "Documentation"
           links:
+            - text: "Getting Started"
+              url: "/getting-started/"
             - text: "User Guide"
-              url: "/user-guide/"
+              url: "/guide/"
             - text: "API Reference"
               url: "/api/"
 ```
