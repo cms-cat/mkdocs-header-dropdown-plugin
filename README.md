@@ -18,7 +18,7 @@ pip install git+https://github.com/cms-cat/mkdocs-header-dropdown.git
 
 ## Configuration
 
-### Step 1: Add the plugin to your `mkdocs.yml` configuration file
+Add the plugin to your `mkdocs.yml` configuration file:
 
 ```yaml
 plugins:
@@ -39,30 +39,7 @@ plugins:
               target: "_blank"
 ```
 
-### Step 2: Add template overrides
-
-Copy the template files from the plugin's `templates/` directory to your project's `overrides/` directory:
-
-```bash
-# From your mkdocs project root
-mkdir -p overrides/partials
-cp /path/to/plugin/templates/partials/header.html overrides/partials/
-cp /path/to/plugin/templates/partials/header-dropdown.html overrides/partials/
-```
-
-Or download them from the repository:
-- [header.html](templates/partials/header.html) - Minimal Material theme header override with dropdown injection point
-- [header-dropdown.html](templates/partials/header-dropdown.html) - The dropdown menu template
-
-### Step 3: Configure the theme
-
-Make sure your `mkdocs.yml` specifies the custom directory:
-
-```yaml
-theme:
-  name: material
-  custom_dir: overrides
-```
+**That's it!** The plugin automatically provides the necessary templates. No manual template overrides required.
 
 ## Configuration Options
 

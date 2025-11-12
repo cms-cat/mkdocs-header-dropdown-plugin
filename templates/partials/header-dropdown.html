@@ -1,12 +1,7 @@
 <!--
-  Header Dropdown Component
-
-  This partial renders dropdown menus in the header based on configuration
-  from the header-dropdown plugin.
-
-  Usage: {%raw%}{% include "partials/header-dropdown.html" %}{%endraw%}
+  Header Dropdown - Rendered inline and injected via JavaScript
 -->
-
+<div id="header-dropdown-template" style="display: none;">
 {% if config.extra.header_dropdowns %}
   {% for dropdown in config.extra.header_dropdowns %}
     <div class="md-header__option" style="margin-right: 0.1rem;">
@@ -37,46 +32,55 @@
       </div>
     </div>
   {% endfor %}
-
-  <script>
-    // Only define functions once
-    if (typeof toggleHeaderDropdown === 'undefined') {
-      function toggleHeaderDropdown(event) {
-        event.stopPropagation();
-        const dropdown = event.target.closest('.md-header__dropdown');
-        const content = dropdown.querySelector('.md-header__dropdown-content');
-        const isVisible = content.style.display === 'block';
-
-        // Close all other dropdowns
-        document.querySelectorAll('.md-header__dropdown-content').forEach(el => {
-          el.style.display = 'none';
-        });
-
-        // Toggle current dropdown
-        content.style.display = isVisible ? 'none' : 'block';
-      }
-
-      function showHeaderDropdown(dropdown) {
-        const content = dropdown.querySelector('.md-header__dropdown-content');
-        content.style.display = 'block';
-      }
-
-      function hideHeaderDropdown(dropdown) {
-        // Add a small delay to prevent flickering when moving between elements
-        setTimeout(() => {
-          const content = dropdown.querySelector('.md-header__dropdown-content');
-          if (!dropdown.matches(':hover')) {
-            content.style.display = 'none';
-          }
-        }, 100);
-      }
-
-      // Close dropdown when clicking outside
-      document.addEventListener('click', function() {
-        document.querySelectorAll('.md-header__dropdown-content').forEach(el => {
-          el.style.display = 'none';
-        });
-      });
-    }
-  </script>
 {% endif %}
+</div>
+
+<script>
+  // Inject dropdown into header after page load
+  document.addEventListener('DOMContentLoaded', function() {
+    const template = document.getElementById('header-dropdown-template');
+    const search = document.querySelector('.md-search');
+
+    if (template && search && !document.querySelector('.md-header__dropdown')) {
+      // Clone the template content and insert after search
+      const content = template.innerHTML;
+      search.insertAdjacentHTML('afterend', content);
+    }
+  });
+
+  // Dropdown interaction functions
+  if (typeof toggleHeaderDropdown === 'undefined') {
+    function toggleHeaderDropdown(event) {
+      event.stopPropagation();
+      const dropdown = event.target.closest('.md-header__dropdown');
+      const content = dropdown.querySelector('.md-header__dropdown-content');
+      const isVisible = content.style.display === 'block';
+
+      document.querySelectorAll('.md-header__dropdown-content').forEach(el => {
+        el.style.display = 'none';
+      });
+
+      content.style.display = isVisible ? 'none' : 'block';
+    }
+
+    function showHeaderDropdown(dropdown) {
+      const content = dropdown.querySelector('.md-header__dropdown-content');
+      content.style.display = 'block';
+    }
+
+    function hideHeaderDropdown(dropdown) {
+      setTimeout(() => {
+        const content = dropdown.querySelector('.md-header__dropdown-content');
+        if (!dropdown.matches(':hover')) {
+          content.style.display = 'none';
+        }
+      }, 100);
+    }
+
+    document.addEventListener('click', function() {
+      document.querySelectorAll('.md-header__dropdown-content').forEach(el => {
+        el.style.display = 'none';
+      });
+    });
+  }
+</script>
