@@ -16,7 +16,13 @@ This plugin adds configurable dropdown menus to your MkDocs Material theme heade
 
 ## Check the Header!
 
-Look at the header above - you'll see example dropdown menus demonstrating the plugin's capabilities.
+Look at the header above - you'll see **three dropdown menus** demonstrating the plugin's capabilities:
+
+1. **CMS POG Docs** - Loaded from a shared configuration file via git submodule (`cms-docs-common`)
+2. **Examples** - Defined directly in `mkdocs.yml`
+3. **Resources** - Also defined directly in `mkdocs.yml`
+
+This demonstrates both configuration methods working together!
 
 ## Installation
 

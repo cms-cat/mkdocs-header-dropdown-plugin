@@ -31,6 +31,7 @@ theme:
 plugins:
   - search
   - header-dropdown:
+      config_file: "cms-docs-common/header-dropdown.yml"
       dropdowns:
         - title: "Examples"
           links:
@@ -47,14 +48,6 @@ plugins:
               url: "https://github.com/cms-cat/mkdocs-header-dropdown-plugin/issues"
               target: "_blank"
             - text: "Material Theme Docs"
-              url: "https://squidfunk.github.io/mkdocs-material/"
-              target: "_blank"
-        - title: "Related Projects"
-          links:
-            - text: "MkDocs"
-              url: "https://www.mkdocs.org/"
-              target: "_blank"
-            - text: "Material for MkDocs"
               url: "https://squidfunk.github.io/mkdocs-material/"
               target: "_blank"
 

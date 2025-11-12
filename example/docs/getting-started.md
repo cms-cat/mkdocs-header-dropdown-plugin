@@ -71,3 +71,22 @@ plugins:
   - header-dropdown:
       config_file: "shared-config/dropdowns.yml"
 ```
+
+**Live Example**: The "CMS POG Docs" dropdown in this site's header is loaded from the [cms-docs-common](https://github.com/cms-cat/cms-docs-common) repository via git submodule!
+
+## Mixing Configuration Sources
+
+You can combine shared config with site-specific dropdowns:
+
+```yaml
+plugins:
+  - header-dropdown:
+      config_file: "cms-docs-common/header-dropdown.yml"  # Shared
+      dropdowns:  # Site-specific
+        - title: "Local Links"
+          links:
+            - text: "About"
+              url: "/about/"
+```
+
+Both will appear in the header - check this example site to see it in action!
