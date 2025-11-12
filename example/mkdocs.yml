@@ -36,13 +36,13 @@ plugins:
         - title: "Examples"
           links:
             - text: "Overview"
-              url: "/"
+              url: "index.html"
             - text: "Getting Started"
-              url: "/getting-started/"
+              url: "getting-started/"
             - text: "Configuration Examples"
-              url: "/examples/"
+              url: "examples/"
             - text: "Nested Menus"
-              url: "/nested-menus/"
+              url: "nested-menus/"
         - title: "Resources"
           links:
             - text: "GitHub Repository"
