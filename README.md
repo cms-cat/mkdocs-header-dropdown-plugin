@@ -148,7 +148,7 @@ plugins:
 
 ## Example: Nested Dropdowns
 
-Create submenus by using `submenu` instead of `url`:
+Create submenus by using `submenu`:
 
 ```yaml
 plugins:
@@ -158,7 +158,7 @@ plugins:
           links:
             - text: "GitHub"
               url: "https://github.com/example"
-            - text: "Documentation"  # This will show an arrow
+            - text: "Documentation"  # Not clickable, shows submenu only
               submenu:
                 - text: "User Guide"
                   url: "/guide/"
@@ -169,9 +169,30 @@ plugins:
                   url: "/tutorials/"
 ```
 
-Nested dropdowns:
+### Clickable Top-Level Link with Submenu
+
+You can also make the top-level item clickable by adding a `url`:
+
+```yaml
+plugins:
+  - header-dropdown:
+      dropdowns:
+        - title: "Documentation"
+          links:
+            - text: "All Docs"
+              url: "/docs/"          # Clicking goes here
+              target: "_blank"
+              submenu:                # Hovering shows submenu
+                - text: "User Guide"
+                  url: "/docs/guide/"
+                - text: "API Reference"
+                  url: "/docs/api/"
+```
+
+Nested dropdown features:
 - Show an arrow indicator (▶) automatically
 - Appear to the right on hover
+- Top-level can be clickable (with `url`) or non-clickable (without `url`)
 - Support multiple levels of nesting
 - Work with keyboard navigation
 ```

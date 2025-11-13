@@ -106,8 +106,9 @@ Each link in the `links` list supports:
 | Field | Type | Required | Description |
 |-------|------|----------|-------------|
 | `text` | string | Yes | The link text |
-| `url` | string | Yes | The target URL (can be relative or absolute) |
+| `url` | string | Conditional | The target URL (can be relative or absolute). Required unless `submenu` is provided. Optional when using `submenu` to make the parent clickable. |
 | `target` | string | No | HTML target attribute (e.g., `_blank` for new tab) |
+| `submenu` | list | No | List of nested links (creates a submenu). See Nested Dropdowns below. |
 
 ## Advanced Examples
 
@@ -170,6 +171,57 @@ plugins:
             - text: "API Reference"
               url: "/api/"
 ```
+
+### Nested Dropdowns (Submenus)
+
+Create multi-level dropdown menus using the `submenu` field:
+
+```yaml
+plugins:
+  - header-dropdown:
+      dropdowns:
+        - title: "Resources"
+          links:
+            - text: "GitHub"
+              url: "https://github.com/example"
+            - text: "Documentation"  # Not clickable, shows submenu on hover
+              submenu:
+                - text: "User Guide"
+                  url: "/guide/"
+                - text: "API Reference"
+                  url: "/api/"
+                - text: "Tutorials"
+                  url: "/tutorials/"
+```
+
+#### Clickable Parent with Submenu
+
+You can make the parent item clickable by adding both `url` and `submenu`:
+
+```yaml
+plugins:
+  - header-dropdown:
+      dropdowns:
+        - title: "Documentation"
+          links:
+            - text: "All Docs"
+              url: "/docs/"          # Click to go to main docs page
+              target: "_blank"
+              submenu:                # Hover to see submenu
+                - text: "User Guide"
+                  url: "/docs/guide/"
+                - text: "API Reference"
+                  url: "/docs/api/"
+                - text: "Tutorials"
+                  url: "/docs/tutorials/"
+```
+
+Nested dropdown features:
+- Arrow indicator (▶) shows automatically for items with submenus
+- Submenus appear to the right on hover
+- Parent can be clickable (with `url`) or non-clickable (without `url`)
+- Supports multiple levels of nesting
+- Works with keyboard navigation
 
 ## Sharing the Plugin Across Projects
 
