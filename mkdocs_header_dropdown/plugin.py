@@ -91,7 +91,7 @@ class HeaderDropdownPlugin(BasePlugin):
             # Return parent link with submenu
             if parent_key:
                 link = {
-                    'text': f"{parent_key} Docs" if parent_key != "PRO" else "PRO TWiki",
+                    'text': f"{parent_key}",
                     'target': '_blank'
                 }
                 if parent_url:
