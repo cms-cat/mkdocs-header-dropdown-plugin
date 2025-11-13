@@ -72,7 +72,7 @@ class HeaderDropdownPlugin(BasePlugin):
         This runs after the theme environment is set up.
         """
         plugin_dir = os.path.dirname(os.path.abspath(__file__))
-        templates_dir = os.path.join(os.path.dirname(plugin_dir), 'templates')
+        templates_dir = os.path.join(plugin_dir, 'templates')
 
         if os.path.exists(templates_dir):
             # Add to the beginning of the loader search path
