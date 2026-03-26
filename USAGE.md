@@ -108,6 +108,7 @@ Each link in the `links` list supports:
 | `text` | string | Yes | The link text |
 | `url` | string | Conditional | The target URL (can be relative or absolute). Required unless `submenu` is provided. Optional when using `submenu` to make the parent clickable. |
 | `target` | string | No | HTML target attribute (e.g., `_blank` for new tab) |
+| `bottom-border` | bool or int | No | Add bottom divider of width 1px if true, or given value in px if number |
 | `submenu` | list | No | List of nested links (creates a submenu). See Nested Dropdowns below. |
 
 ## Advanced Examples
