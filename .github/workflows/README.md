@@ -11,7 +11,7 @@ This directory contains automated workflows for continuous integration and deplo
 **Purpose:** Test the package across multiple Python versions and operating systems.
 
 **Jobs:**
-- **test**: Runs on Python 3.8-3.12 across Ubuntu, macOS, and Windows
+- **test**: Runs on Python 3.9-3.12 across Ubuntu, macOS, and Windows
   - Installs the package
   - Tests imports
   - Validates plugin registration with MkDocs

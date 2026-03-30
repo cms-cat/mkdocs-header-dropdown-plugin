@@ -7,7 +7,7 @@ name = "mkdocs-header-dropdown"
 dynamic = ["version"]
 description = "A MkDocs plugin to add configurable dropdown menus to the Material theme header"
 readme = "README.md"
-requires-python = ">=3.7"
+requires-python = ">=3.9"
 license = "MIT"
 keywords = ["mkdocs", "plugin", "dropdown", "navigation", "material-theme", "documentation"]
 authors = [
@@ -23,8 +23,6 @@ classifiers = [
     "Topic :: Text Processing :: Markup :: Markdown",
     "Framework :: MkDocs",
     "Programming Language :: Python :: 3",
-    "Programming Language :: Python :: 3.7",
-    "Programming Language :: Python :: 3.8",
     "Programming Language :: Python :: 3.9",
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
