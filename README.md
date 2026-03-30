@@ -91,6 +91,7 @@ Each link in the `links` list supports:
 - `text` (string, required): The text displayed for the link
 - `url` (string, optional): The URL the link points to (not needed if using `submenu`)
 - `target` (string, optional): The target attribute (e.g., `_blank` for new tab)
+- `bottom-border` (bool or int, optional): Add bottom divider of width 1px if true, or given value in px if number
 - `submenu` (list, optional): List of nested links for a submenu (see Nested Dropdowns below)
 
 ## Example: Using Shared Config File

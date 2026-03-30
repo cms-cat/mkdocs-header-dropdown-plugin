@@ -35,6 +35,34 @@ class HeaderDropdownPlugin(BasePlugin):
         ('dropdowns', config_options.Type(list, default=[])),
     )
 
+    def _normalize_links(self, links):
+        """
+        Normalize `border-bottom` value. Default width is 1px if specified
+        """
+        normalized = []
+        for link in (links or []):
+            if not isinstance(link, dict):
+                normalized.append(link)
+                continue
+            item = dict(link) # shallow copy avoid mutating link
+            value = item.get('border-bottom', None)
+            style = ""
+            width = 0
+            if value is None:
+                width  = 0
+            elif isinstance(value,bool):
+                width  = 1 if value else 0
+            elif isinstance(value,str):
+                valstr = value.lower()
+                width  = 1 if any(v in valstr for v in ['yes','true','on']) else 0
+            elif isinstance(value,(int,float)):
+                width  = value
+            if width>0:
+                style += f"border-bottom: {width}px solid var(--md-default-fg-color--lightest);"
+            item['extra_style'] = style
+            normalized.append(item)
+        return normalized
+
     def _generate_links_from_yaml(self, data, parent_key=None):
         """
         Recursively generate dropdown links from YAML structure.
@@ -161,6 +189,11 @@ class HeaderDropdownPlugin(BasePlugin):
 
         # 2. Add dropdowns from mkdocs.yml
         dropdowns.extend(self.config.get('dropdowns', []))
+
+        # Normalize link-level attributes
+        for dropdown in dropdowns:
+            if isinstance(dropdown, dict) and isinstance(dropdown.get('links'), list):
+                dropdown['links'] = self._normalize_links(dropdown['links'])
 
         # Add the dropdowns to extra so templates can access them
         config.extra['header_dropdowns'] = dropdowns

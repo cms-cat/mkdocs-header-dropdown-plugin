@@ -28,7 +28,7 @@
                   {# Top-level link with submenu - clickable link with arrow #}
                   <a href="{{ link.url }}"
                      {% if link.target %}target="{{ link.target }}"{% endif %}
-                     style="display: flex; justify-content: space-between; align-items: center; padding: 0.5rem 1rem; color: var(--md-default-fg-color); text-decoration: none; font-size: 0.7rem;"
+                     style="display: flex; justify-content: space-between; align-items: center; padding: 0.5rem 1rem; color: var(--md-default-fg-color); text-decoration: none; font-size: 0.7rem;{{ link.extra_style }}"
                      onmouseover="this.style.backgroundColor='var(--md-default-fg-color--lightest)'"
                      onmouseout="this.style.backgroundColor='transparent'">
                     <span>{{ link.text }}</span>
@@ -38,7 +38,7 @@
                   </a>
                 {% else %}
                   {# Top-level item with submenu only - not clickable #}
-                  <div style="display: flex; justify-content: space-between; align-items: center; padding: 0.5rem 1rem; color: var(--md-default-fg-color); font-size: 0.7rem; cursor: pointer;"
+                  <div style="display: flex; justify-content: space-between; align-items: center; padding: 0.5rem 1rem; color: var(--md-default-fg-color); font-size: 0.7rem; cursor: pointer;{{ link.extra_style }}"
                        onmouseover="this.style.backgroundColor='var(--md-default-fg-color--lightest)'"
                        onmouseout="this.style.backgroundColor='transparent'">
                     <span>{{ link.text }}</span>
@@ -52,7 +52,7 @@
                   {% for sublink in link.submenu %}
                     <a href="{{ sublink.url }}"
                        {% if sublink.target %}target="{{ sublink.target }}"{% endif %}
-                       style="display: block; padding: 0.5rem 1rem; color: var(--md-default-fg-color); text-decoration: none; font-size: 0.7rem"
+                       style="display: block; padding: 0.5rem 1rem; color: var(--md-default-fg-color); text-decoration: none; font-size: 0.7rem;{{ sublink.extra_style }}"
                        onmouseover="this.style.backgroundColor='var(--md-default-fg-color--lightest)'"
                        onmouseout="this.style.backgroundColor='transparent'">
                       {{ sublink.text }}
@@ -63,7 +63,7 @@
             {% else %}
               <a href="{{ link.url }}"
                  {% if link.target %}target="{{ link.target }}"{% endif %}
-                 style="display: block; padding: 0.5rem 1rem; color: var(--md-default-fg-color); text-decoration: none; font-size: 0.7rem"
+                 style="display: block; padding: 0.5rem 1rem; color: var(--md-default-fg-color); text-decoration: none; font-size: 0.7rem;{{ link.extra_style }}"
                  onmouseover="this.style.backgroundColor='var(--md-default-fg-color--lightest)'"
                  onmouseout="this.style.backgroundColor='transparent'">
                 {{ link.text }}

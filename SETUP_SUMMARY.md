@@ -17,7 +17,7 @@ This document summarizes the changes made to set up this repository for PyPI pub
 - Added maintainers field
 - Added `pyyaml` dependency
 - Enhanced project URLs (Issues, Documentation)
-- Updated Python version support (3.7-3.12)
+- Updated Python version support (3.9-3.12)
 - Fixed package data configuration
 
 #### `MANIFEST.in` (new)
@@ -28,7 +28,7 @@ This document summarizes the changes made to set up this repository for PyPI pub
 
 #### `.github/workflows/ci.yml` (new)
 Tests the package across multiple environments:
-- **Python versions**: 3.8, 3.9, 3.10, 3.11, 3.12
+- **Python versions**: 3.9, 3.10, 3.11, 3.12
 - **Operating systems**: Ubuntu, macOS, Windows
 - **Checks**:
   - Package installation
